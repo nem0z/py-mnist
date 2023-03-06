@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from PIL import Image
 
 from utils.parse import parse_label, parse_image
 
@@ -15,4 +16,17 @@ class Dataset:
     def plot_labels(self):
         unique, counts = np.unique(self.labels, return_counts=True)
         plt.bar(unique, counts)
-        plt.show(block = False)
+        plt.show()
+        
+    def mean(self):
+        unique_labels = np.unique(self.labels)
+
+        mean_images = {}
+        for label in unique_labels:
+            label_images = self.images[self.labels == label]
+            stacked_images = np.stack(label_images)
+            mean_image = np.mean(stacked_images, axis=0)
+            mean_images[label] = mean_image
+            
+        return mean_images
+        
