@@ -1,8 +1,7 @@
-import gzip
 import numpy as np
-import matplotlib.pyplot as plt
 
 from dataset import Dataset
+from model import Model
 from utils.display import display_one, display_many
 
 DATASETS_PATH = "./datasets/"
@@ -18,10 +17,18 @@ train_dataset.load(DATASETS_PATH+TRAIN_LABEL, DATASETS_PATH+TRAIN_IMAGE)
 t10k_dataset.load(DATASETS_PATH+T10K_LABEL, DATASETS_PATH+T10K_IMAGE)
     
 train_dataset.plot_labels()
-t10k_dataset.plot_labels()
 
 means = train_dataset.mean()
-display_many([img for img in means.values()], 4, 3)
-# for label, mean in means.items():
-#     display_one(mean, label)
+display_many([img for img in means.values()], 2, 5)
+
+model = Model(train_dataset, t10k_dataset)
+
+model.train()
+model.test()
+
+accuracy = model.accuracy()
+print(f"Accuracy: {accuracy:.4f}")
+
+model.plot_sample(False)
+model.plot_confusion_matrix()
 
