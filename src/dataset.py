@@ -18,6 +18,9 @@ class Dataset:
         plt.bar(unique, counts)
         plt.show()
         
+    def reshape(self):
+        return self.images.reshape(len(self.images), len(self.images[0]) * len(self.images[0][0]))
+        
     def mean(self):
         unique_labels = np.unique(self.labels)
 
