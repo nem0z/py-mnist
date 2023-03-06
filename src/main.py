@@ -3,6 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from dataset import Dataset
+from utils.display import display_one, display_many
 
 DATASETS_PATH = "./datasets/"
 TRAIN_LABEL = "train-labels-idx1-ubyte.gz"
@@ -19,5 +20,8 @@ t10k_dataset.load(DATASETS_PATH+T10K_LABEL, DATASETS_PATH+T10K_IMAGE)
 train_dataset.plot_labels()
 t10k_dataset.plot_labels()
 
-input("Press [enter] to quit...")
+means = train_dataset.mean()
+display_many([img for img in means.values()], 4, 3)
+# for label, mean in means.items():
+#     display_one(mean, label)
 
