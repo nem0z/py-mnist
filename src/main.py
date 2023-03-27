@@ -1,5 +1,3 @@
-import numpy as np
-
 from dataset import Dataset
 from model import Model
 from utils.display import display_one, display_many
@@ -19,7 +17,7 @@ t10k_dataset.load(DATASETS_PATH+T10K_LABEL, DATASETS_PATH+T10K_IMAGE)
 train_dataset.plot_labels()
 
 means = train_dataset.mean()
-display_many([img for img in means.values()], 2, 5)
+display_many([img for img in means.values()], 2, 5, title="Mean of each digit")
 
 model = Model(train_dataset, t10k_dataset)
 
