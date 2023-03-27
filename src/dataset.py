@@ -16,6 +16,10 @@ class Dataset:
     def plot_labels(self):
         unique, counts = np.unique(self.labels, return_counts=True)
         plt.bar(unique, counts)
+        
+        plt.title('Bar Chart of Label Counts')
+        plt.xlabel('Label')
+        plt.ylabel('Count')
         plt.show()
         
     def reshape(self):

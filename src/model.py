@@ -25,7 +25,8 @@ class Model:
     def plot_sample(self, ok):
         sample = [i for i in range(len(self.predicted_labels)) if (self.predicted_labels[i] == self.test_set.labels[i]) == ok]
         
-        _, axes = plt.subplots(nrows=3, ncols=5, figsize=(8, 6))
+        fig, axes = plt.subplots(nrows=3, ncols=5, figsize=(8, 6))
+        fig.suptitle(f'Sample of {"valid" if ok else "invalid"} results')
         for i, ax in enumerate(axes.flat):
             ax.imshow(self.test_set.images[sample[i]], cmap="gray")
             ax.set_title(f"Predicted: {self.predicted_labels[sample[i]]}")
